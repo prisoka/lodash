@@ -22,7 +22,19 @@ _.last = function(array) {
 
 // Returns the last n number of elements in an array.
 _.takeRight = function(array, n) {
-	// Place your solution here
+  // console.log("this is array>>>",array);
+  // console.log("this is n>>>",n);
+  // let startIndex;
+  //
+  // n = n || 1;
+  //
+  // console.log("array.slice(n) >>>>",array.slice(n))
+  //
+  // // if ( n >= array.length ){
+  // //   return array;
+  // // }
+  //
+  // return array.slice(startIndex);
 };
 
 // Returns a new array with all falsey values removed.
@@ -31,16 +43,14 @@ _.takeRight = function(array, n) {
 // _.compact([0, 1, false, 2, '', 3]);
 // → [1, 2, 3]
 _.compact = function(array) {
-  console.log("array>>>",array)
 	let output = [];
 
   for ( let i = 0; i < array.length; i++ ) {
-    if ( !array[i] ){
+    if ( array[i] ){
       output.push(array[i]);
     }
   }
 
-  console.log("output>>>",output)
   return output;
 };
 
@@ -50,25 +60,57 @@ _.compact = function(array) {
 // _.difference([1, 2, 3], [4, 2]);
 // → [1, 3]
 _.difference = function(arrayOne, arrayTwo) {
-	// Place your solution here
+	let output = [];
+
+  _.forEach(arrayOne, (element)=>{
+    if ( _.indexOf(arrayTwo,element) === -1 ){
+      output.push(element);
+    }
+  })
+
+  return output;
 };
 
 // Returns element with minimum
 // value in an array.
 _.min = function(array) {
-	// Place your solution here
+  let lowest = array[0]
+
+  for ( let i = 1; i < array.length; i++ ) {
+    if ( array[i] < lowest ) {
+      lowest = array[i];
+    }
+  }
+
+  return lowest;
 };
 
 // Returns element with maximum
 // value in an array.
 _.max = function(array) {
-	// Place your solution here
+  let highest = array[0]
+
+  for ( let i = 1; i < array.length; i++ ) {
+    if ( array[i] > highest ) {
+      highest = array[i];
+    }
+  }
+
+  return highest;
 };
 
 // Returns either index of matched element or
 // -1.
 _.indexOf = function(array, el) {
-	// Place your solution here
+	let notFound = -1;
+
+  for ( let i = 0; i < array.length; i++ ) {
+    if ( array[i] === el ) {
+      return i;
+    }
+  }
+
+  return notFound;
 };
 
 /*************** BONUS ***************/
@@ -82,29 +124,64 @@ _.shuffle = function(array) {
 **************************************/
 // Returns the length of a collection.
 _.size = function(collection) {
-	// Place your solution here
+	if ( Array.isArray(collection) || typeof collection === "string" ) {
+    return collection.length;
+  }
+  return Object.keys(collection).length;
 };
 
 // Iterates on each element of a collection and
 // then returns the original collection.
 _.forEach = function(collection, callback) {
-	// Place your solution here
+	if ( Array.isArray(collection) || typeof collection === "string" ) {
+    for ( let i = 0; i < collection.length; i++ ) {
+      callback(collection[i]);
+    }
+  } else {
+    for ( let key in collection ) {
+      callback(collection[key]);
+    }
+  }
+
+  return collection;
 };
 
 // Iterates on each element of a collection and
 // then returns a new array.
 _.map = function(collection, callback) {
-	// Place your solution here
+  let output = [];
+
+  _.forEach(collection, (element) =>{
+    output.push(callback(element));
+  })
+
+  return output;
 };
 
 // Returns a new collection with filtered elements.
 _.filter = function(collection, callback) {
-	// Place your solution here
+	let output = [];
+
+  _.forEach(collection, (element,index) =>{
+    // let filteredVal = callback(element,index,collection);
+    if ( callback(element,index,collection) ) {
+      output.push(element);
+    }
+  })
+  return output;
 };
 
 // Returns a new collection with unfiltered elements.
 _.reject = function(collection, callback) {
-	// Place your solution here
+	let output = [];
+
+  _.forEach(collection, (element,index) =>{
+    // let filteredVal = callback(element,index,collection);
+    if ( !callback(element,index,collection) ) {
+      output.push(element);
+    }
+  })
+  return output;
 };
 
 /*************** BONUS ***************/
