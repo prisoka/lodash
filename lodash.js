@@ -22,6 +22,15 @@ _.last = function(array) {
 
 // Returns the last n number of elements in an array.
 _.takeRight = function(array, n) {
+  let length = (array === null) ? 0: array.length;
+  if ( !length ) { return [] };
+  n = n || 1;
+
+  // n = length - n;
+  // console.log("default 2 n>>",n);
+
+  return array.slice(length-n);
+
   // console.log("this is array>>>",array);
   // console.log("this is n>>>",n);
   // let startIndex;
@@ -43,13 +52,32 @@ _.takeRight = function(array, n) {
 // _.compact([0, 1, false, 2, '', 3]);
 // → [1, 2, 3]
 _.compact = function(array) {
-	let output = [];
+	// let output = [];
 
-  for ( let i = 0; i < array.length; i++ ) {
-    if ( array[i] ){
-      output.push(array[i]);
+  return array.filter((element)=>{
+    if ( element ) {
+      return element;
     }
-  }
+    // return element ? element :
+  })
+
+  // array.forEach((element)=>{
+  //   if ( element ) {
+  //     output.push(element);
+  //   }
+  // })
+
+  // _.forEach(array, (element)=>{
+  //   if ( element ) {
+  //     output.push(element);
+  //   }
+  // })
+
+  // for ( let i = 0; i < array.length; i++ ) {
+  //   if ( array[i] ) {
+  //     output.push(array[i]);
+  //   }
+  // }
 
   return output;
 };
@@ -62,11 +90,13 @@ _.compact = function(array) {
 _.difference = function(arrayOne, arrayTwo) {
 	let output = [];
 
-  _.forEach(arrayOne, (element)=>{
-    if ( _.indexOf(arrayTwo,element) === -1 ){
+  for ( let i = 0; i < arrayOne.length; i++ ) {
+    let element = arrayOne[i];
+
+    if ( arrayTwo.indexOf(element) === -1 ) {
       output.push(element);
     }
-  })
+  }
 
   return output;
 };
