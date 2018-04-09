@@ -116,7 +116,7 @@ describe('#indexOf(array, el)', function() {
 });
 
 // /*************** BONUS ***************/
-xdescribe('#shuffle(array)', function() {
+describe('#shuffle(array)', function() {
 
   it('should return a new array with elements shuffled', function() {
     assert.equal(_.shuffle([1, 2, 3]).length, 3);
