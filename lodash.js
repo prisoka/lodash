@@ -11,7 +11,7 @@ _.first = function(array) {
 
  // Returns the first n number of elements in an array.
 _.take = function(array, n=1) {
-		return array.slice(0, n);
+  return array.slice(0, n);
 };
 
 // Returns the last element of an array.
@@ -21,7 +21,7 @@ _.last = function(array) {
 
 // Returns the last n number of elements in an array.
 _.takeRight = function(array, n=1) {
-		return array.slice(Math.max(array.length - n, 1));
+  return array.slice(Math.max(array.length - n, 1));
 }
 
 // Returns a new array with all falsey values removed.
@@ -42,7 +42,7 @@ _.compact = function(array) {
   //   }
   // }
   // return output;
-return array.filter(Boolean);
+  return array.filter(Boolean);
 };
 
 // Returns a new array of elements in the first argument, but
@@ -76,12 +76,12 @@ _.max = function(array) {
 // Returns either index of matched element or
 // -1.
 _.indexOf = function(array, el) {
-    for (let i=0; i<array.length; i++){
-      if(array[i] === el){
-        return i;
-      }
+  for (let i=0; i<array.length; i++){
+    if(array[i] === el){
+      return i;
     }
-    return -1;
+  }
+  return -1;
 };
 
 /*************** BONUS ***************/
@@ -113,6 +113,14 @@ _.size = function(collection) {
 // Iterates on each element of a collection and
 // then returns the original collection.
 _.forEach = function(collection, callback) {
+  /**
+   * @name - _.forEach
+   * @description - Applies callback to each element in an array
+   * @param - array
+   * @param - callback
+   * @return - nothing
+   **/
+
   if (typeof collection === "string" || Array.isArray(collection)){
     for(let i =0; i<collection.length; i++){
       callback(collection[i]);
@@ -136,12 +144,12 @@ _.map = function(collection, callback) {
 
 // Returns a new collection with filtered elements.
 _.filter = function(collection, callback) {
- let filtered = [];
-   _.forEach(collection, function(element){
-     if (callback(element))
-     filtered.push(element);
+  let filtered = [];
+  _.forEach(collection, function(element){
+    if (callback(element))
+    filtered.push(element);
    })
- return filtered;
+  return filtered;
 };
 
 // Returns a new collection with unfiltered elements.
